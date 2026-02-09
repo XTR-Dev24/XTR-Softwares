@@ -1,46 +1,29 @@
 const express = require('express');
-const path = require('path');
 const app = express();
-__path = process.cwd()
-const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 50900;
-const { 
-  qrRoute,
-  pairRoute
-} = require('./routes');
-require('events').EventEmitter.defaultMaxListeners = 2000;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+// Existing routes
+app.get('/qr', (req, res) => {
+    // qr route logic
+});
 
-
-app.use('/qr', qrRoute);
-app.use('/code', pairRoute);
+app.get('/code', (req, res) => {
+    // code route logic
+});
 
 app.get('/pair', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'pair.html'));
+    // pair route logic
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.send('Home');
 });
 
-
-app.get('/health', (req, res) => {
-    res.json({
-        status: 200,
-        success: true,
-        service: 'Gifted-Md Session',
-        timestamp: new Date().toISOString()
-    });
+// New bot route
+app.get('/bot', (req, res) => {
+    // bot route logic
 });
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`
-Deployment Successful!
-
- Gifted-Session-Server Running on http://localhost:` + PORT)
-})
-
-module.exports = app
+    console.log(`Server is running on port ${PORT}`);
+});
