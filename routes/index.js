@@ -1,7 +1,6 @@
-const qrRoute = require('./qr');
-const pairRoute = require('./pair');
+// Existing exports
+export { qrRoute } from './qrRoute';
+export { pairRoute } from './pairRoute';
 
-module.exports = {
-    qrRoute,
-    pairRoute
-}
+// New export for botRoute
+export { botRoute } from './botRoute';
